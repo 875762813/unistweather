@@ -17,12 +17,12 @@ public class UnistWeatherDB {
 	/**
 	* 数据库名
 	*/
-	public static final String DB_NAME = "cool_weather";
+	public static final String DB_NAME = "unist_weather";
 	/**
 	* 数据库版本
 	*/
 	public static final int VERSION = 1;
-	private static UnistWeatherDB coolWeatherDB;
+	private static UnistWeatherDB unistWeatherDB;
 	private SQLiteDatabase db;
 	/**
 	* 将构造方法私有化
@@ -31,17 +31,17 @@ public class UnistWeatherDB {
 	
 	
 	public UnistWeatherDB(Context context) {
-		UnistWeatherOpenHelper 	dbHelper = new UnistWeatherOpenHelper(context,
-				DB_NAME, null, VERSION);
+		UnistWeatherOpenHelper 	dbHelper = new UnistWeatherOpenHelper(context,DB_NAME, null, VERSION);
+		db = dbHelper.getWritableDatabase();
 	}
 	/**
-	* 获取CoolWeatherDB的实例。
+	* 获取UnistWeatherDB的实例。
 	*/
 	public synchronized static UnistWeatherDB getInstance(Context context) {
-	if (coolWeatherDB == null) {
-	coolWeatherDB = new UnistWeatherDB(context);
+	if (unistWeatherDB == null) {
+		unistWeatherDB = new UnistWeatherDB(context);
 	}
-	return coolWeatherDB;
+	return unistWeatherDB;
 	}
 	/**
 	* 将Province实例存储到数据库。
